@@ -10,7 +10,6 @@ export const createProductsMiddleware: RequestHandler<
   const allFildsOfProducst: (keyof Omit<IProducts, "id" | "imagePath">)[] = [
     "category",
     "description",
-    "ingredients",
     "name",
     "price",
   ];

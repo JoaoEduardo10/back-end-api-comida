@@ -1,6 +1,8 @@
 import { RequestHandler } from "express";
+import { ListProductsByCategoryControlle } from "../../controllers/categories/list-products-by-category";
 import { CreateProductsController } from "../../controllers/products/create-products";
 import { ListProductsController } from "../../controllers/products/list-products";
+import { MongoListProductosByCategory } from "../../repositories/category/list-products-by-categorys";
 import { MongoCreateProductsRepository } from "../../repositories/products/create-products";
 import { MongoListProductsRepository } from "../../repositories/products/list-products";
 
@@ -33,7 +35,19 @@ const createProducts: RequestHandler = async (req, res) => {
 
 // get products by categorys
 const getProductsByCategories: RequestHandler = async (req, res) => {
-  res.send("pego");
+  const mongoListProductsByCategoryRepository =
+    await new MongoListProductosByCategory();
+
+  const listProdustByCategoryController =
+    await new ListProductsByCategoryControlle(
+      mongoListProductsByCategoryRepository
+    );
+
+  const { body, statusCode } = await listProdustByCategoryController.handle(
+    req
+  );
+
+  res.status(statusCode).json(body);
 };
 
 export { createProducts, getProductsByCategories, listProducts };

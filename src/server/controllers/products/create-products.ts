@@ -19,7 +19,9 @@ export class CreateProductsController implements IControllers {
       category,
       description,
       imagePath,
-      ingredients: JSON.parse(ingredients as unknown as string),
+      ingredients: ingredients
+        ? JSON.parse(ingredients as unknown as string)
+        : [],
       name,
       price: Number(price),
     });
