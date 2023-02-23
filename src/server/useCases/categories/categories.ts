@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
 import { CreateCategoryController } from "../../controllers/categories/create-category";
 import { ListCategoryController } from "../../controllers/categories/list-category";
-import { MongoCreateCategoryRepository } from "../../rpositories/category/create-category";
-import { MongoListCategoryRepository } from "../../rpositories/category/list-category";
+import { MongoCreateCategoryRepository } from "../../repositories/category/create-category";
+import { MongoListCategoryRepository } from "../../repositories/category/list-category";
 
 // list categories
 const listCatgories: RequestHandler = async (req, res) => {
