@@ -1,5 +1,7 @@
 import { RequestHandler } from "express";
+import { CreateCategoryController } from "../../controllers/categories/create-category";
 import { ListCategoryController } from "../../controllers/categories/list-category";
+import { MongoCreateCategoryRepository } from "../../rpositories/category/create-category";
 import { MongoListCategoryRepository } from "../../rpositories/category/list-category";
 
 // list categories
@@ -17,7 +19,16 @@ const listCatgories: RequestHandler = async (req, res) => {
 
 // create categories
 const createCatgories: RequestHandler = async (req, res) => {
-  res.send("criado");
+  const mongoCreateCategoryRepository =
+    await new MongoCreateCategoryRepository();
+
+  const createCategoryController = await new CreateCategoryController(
+    mongoCreateCategoryRepository
+  );
+
+  const { body, statusCode } = await createCategoryController.handle(req);
+
+  res.status(statusCode).json(body);
 };
 
 export { listCatgories, createCatgories };
