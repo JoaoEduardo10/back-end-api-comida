@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { createCategoryMiddleware } from "./middlewares/categories/create-category-middleware";
 import {
   createCatgories,
   listCatgories,
@@ -18,7 +19,7 @@ import {
 const router = Router();
 
 router.get("/categories", listCatgories);
-router.post("/categories", createCatgories);
+router.post("/categories", createCategoryMiddleware, createCatgories);
 
 router.get("/products", listProducts);
 router.post("/products", createProducts);
