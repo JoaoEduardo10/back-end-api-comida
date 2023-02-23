@@ -1,4 +1,4 @@
-import { Request, RequestHandler } from "express";
+import { RequestHandler } from "express";
 import { Bad_Request } from "../../helpers/api-errors";
 import { ICategory } from "../../models/protocols";
 
@@ -6,7 +6,7 @@ export const createCategoryMiddleware: RequestHandler<
   {},
   {},
   Omit<ICategory, "id">
-> = async (req, res, next) => {
+> = async (req, _res, next) => {
   const allFildsOfCategory: (keyof ICategory)[] = ["icon", "name"];
 
   for (const filds of allFildsOfCategory) {

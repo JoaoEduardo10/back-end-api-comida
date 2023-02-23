@@ -1,8 +1,18 @@
 import { RequestHandler } from "express";
-// list produts
+import { ListProductsController } from "../../controllers/products/list-products";
+import { MongoListProductsRepository } from "../../rpositories/products/list-products";
 
+// list produts
 const listProducts: RequestHandler = async (req, res) => {
-  res.send("ok");
+  const mongoListProductsRepository = await new MongoListProductsRepository();
+
+  const listProductsController = await new ListProductsController(
+    mongoListProductsRepository
+  );
+
+  const { body, statusCode } = await listProductsController.handle(req);
+
+  res.status(statusCode).json(body);
 };
 
 // create products
