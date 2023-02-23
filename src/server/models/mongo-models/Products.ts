@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { IProducts } from "./protocols";
+import { IProducts } from "../protocols";
 
 const Products = model(
   "Products",

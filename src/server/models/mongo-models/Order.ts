@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { IOrder } from "./protocols";
+import { IOrder } from "../protocols";
 
 const Order = model(
   "Order",
