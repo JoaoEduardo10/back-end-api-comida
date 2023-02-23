@@ -20,6 +20,7 @@ import {
 } from "./useCases/products/products";
 
 import multer from "multer";
+import { createProductsMiddleware } from "./middlewares/products/create-products-middleware";
 
 const router = Router();
 
@@ -38,7 +39,12 @@ router.get("/categories", listCatgories);
 router.post("/categories", createCategoryMiddleware, createCatgories);
 
 router.get("/products", listProducts);
-router.post("/products", upload.single("image"), createProducts);
+router.post(
+  "/products",
+  upload.single("image"),
+  createProductsMiddleware,
+  createProducts
+);
 router.get("/categories/:categoryId/products", getProductsByCategories);
 
 router.get("/orders", listOrder);

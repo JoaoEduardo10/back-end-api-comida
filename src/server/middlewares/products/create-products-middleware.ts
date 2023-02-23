@@ -6,15 +6,18 @@ export const createProductsMiddleware: RequestHandler<
   {},
   {},
   Omit<IProducts, "id">
-> = async (req, res, next) => {
-  const allFildsOfProducst: (keyof Omit<IProducts, "id">)[] = [
+> = async (req, _res, next) => {
+  const allFildsOfProducst: (keyof Omit<IProducts, "id" | "imagePath">)[] = [
     "category",
     "description",
-    "imagePath",
     "ingredients",
     "name",
     "price",
   ];
+
+  if (!req.file?.filename) {
+    throw new Bad_Request("adicione uma image");
+  }
 
   for (const fileds of allFildsOfProducst) {
     if (!req?.body?.[fileds]) {
@@ -23,4 +26,6 @@ export const createProductsMiddleware: RequestHandler<
       );
     }
   }
+
+  next();
 };
