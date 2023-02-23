@@ -11,16 +11,17 @@ export class CreateProductsController implements IControllers {
   async handle(
     req: IHttpRequest<Omit<IProducts, "id">>
   ): Promise<IHttpResponse<IProducts>> {
-    const { category, description, imagePath, ingredients, name, price } =
-      req.body!;
+    const imagePath = req.file?.filename;
+
+    const { category, description, ingredients, name, price } = req.body!;
 
     const product = await this.createProductRepository.create({
       category,
       description,
       imagePath,
-      ingredients,
+      ingredients: JSON.parse(ingredients as unknown as string),
       name,
-      price,
+      price: Number(price),
     });
 
     return {

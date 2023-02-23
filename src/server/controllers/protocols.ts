@@ -6,6 +6,7 @@ export interface IHttpResponse<B> {
 export interface IHttpRequest<B> {
   params?: any;
   headers?: any;
+  file?: any;
   body?: B;
 }
 
