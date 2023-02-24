@@ -27,3 +27,7 @@ export interface ICreateOrderRepository {
 export interface IChangeOrderRepository {
   change(params: IChangeOrderParams): Promise<void>;
 }
+
+export interface IDeleteOrderRepository {
+  delete(orderId: string): Promise<void>;
+}

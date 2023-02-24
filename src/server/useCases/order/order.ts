@@ -5,6 +5,8 @@ import { MongoCreateOrderRepository } from "../../repositories/order/create-orde
 import { MongoListOrderRepository } from "../../repositories/order/list-order";
 import { MongoChangeOrderRepository } from "../../repositories/order/change-order";
 import { ChangeOrderController } from "../../controllers/order/change-order";
+import { MongoDeleteOrderRepository } from "../../repositories/order/delete-order";
+import { DeleteOrderController } from "../../controllers/order/delete-order";
 
 //  list order
 const listOrder: RequestHandler = async (req, res) => {
@@ -45,7 +47,15 @@ const ChangeOrderStatus: RequestHandler = async (req, res) => {
 
 // delete Cancel order
 const deleteCancelOrder: RequestHandler = async (req, res) => {
-  res.send("ok");
+  const mongoDeleteOrderRepository = await new MongoDeleteOrderRepository();
+
+  const deleteOrderController = await new DeleteOrderController(
+    mongoDeleteOrderRepository
+  );
+
+  const { statusCode } = await deleteOrderController.handle(req);
+
+  res.sendStatus(statusCode);
 };
 
 export { ChangeOrderStatus, deleteCancelOrder, listOrder, createOrder };

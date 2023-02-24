@@ -23,6 +23,7 @@ import multer from "multer";
 import { createProductsMiddleware } from "./middlewares/products/create-products-middleware";
 import { ChangeOrderMiddleware } from "./middlewares/order/change-order";
 import { createOrderMiddlware } from "./middlewares/order/create-order";
+import { deleteOrderMiddlware } from "./middlewares/order/delete-order";
 
 const router = Router();
 
@@ -52,6 +53,6 @@ router.get("/categories/:categoryId/products", getProductsByCategories);
 router.get("/orders", listOrder);
 router.post("/orders", createOrderMiddlware, createOrder);
 router.patch("/orders/:orderId", ChangeOrderMiddleware, ChangeOrderStatus);
-router.delete("/orders/:oderId", deleteCancelOrder);
+router.delete("/orders/:orderId", deleteOrderMiddlware, deleteCancelOrder);
 
 export { router };
