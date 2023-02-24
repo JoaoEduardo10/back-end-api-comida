@@ -1,8 +1,16 @@
 import { RequestHandler } from "express";
+import { ListOrderController } from "../../controllers/order/list-order";
+import { MongoListOrderRepository } from "../../repositories/order/list-order";
 
 //  list order
 const listOrder: RequestHandler = async (req, res) => {
-  res.send("ok");
+  const mongoListOrder = await new MongoListOrderRepository();
+
+  const listOrderController = await new ListOrderController(mongoListOrder);
+
+  const { body, statusCode } = await listOrderController.handle(req);
+
+  res.status(statusCode).json(body);
 };
 
 // creat order
