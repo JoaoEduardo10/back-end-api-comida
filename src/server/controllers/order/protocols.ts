@@ -11,10 +11,19 @@ export interface ICreateOderParams {
   ];
 }
 
+export interface IChangeOrderParams {
+  status: "WAITING" | "IN_PRODUCTION" | "DONE";
+  id: string;
+}
+
 export interface IListOrderRpository {
   list(): Promise<IOrder[]>;
 }
 
 export interface ICreateOrderRepository {
   create(params: ICreateOderParams): Promise<IOrder>;
+}
+
+export interface IChangeOrderRepository {
+  change(params: IChangeOrderParams): Promise<void>;
 }

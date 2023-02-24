@@ -3,6 +3,8 @@ import { CreateOrderController } from "../../controllers/order/create-order";
 import { ListOrderController } from "../../controllers/order/list-order";
 import { MongoCreateOrderRepository } from "../../repositories/order/create-order";
 import { MongoListOrderRepository } from "../../repositories/order/list-order";
+import { MongoChangeOrderRepository } from "../../repositories/order/change-order";
+import { ChangeOrderController } from "../../controllers/order/change-order";
 
 //  list order
 const listOrder: RequestHandler = async (req, res) => {
@@ -30,7 +32,15 @@ const createOrder: RequestHandler = async (req, res) => {
 
 // Change Order status
 const ChangeOrderStatus: RequestHandler = async (req, res) => {
-  res.send("ok");
+  const mongoChangeOrderRepository = await new MongoChangeOrderRepository();
+
+  const changeOderController = await new ChangeOrderController(
+    mongoChangeOrderRepository
+  );
+
+  const { statusCode } = await changeOderController.handle(req);
+
+  res.sendStatus(statusCode);
 };
 
 // delete Cancel order

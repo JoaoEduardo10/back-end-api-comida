@@ -21,6 +21,8 @@ import {
 
 import multer from "multer";
 import { createProductsMiddleware } from "./middlewares/products/create-products-middleware";
+import { ChangeOrderMiddleware } from "./middlewares/order/change-order";
+import { createOrderMiddlware } from "./middlewares/order/create-order";
 
 const router = Router();
 
@@ -48,8 +50,8 @@ router.post(
 router.get("/categories/:categoryId/products", getProductsByCategories);
 
 router.get("/orders", listOrder);
-router.post("/orders", createOrder);
-router.patch("/orders/:orderId", ChangeOrderStatus);
+router.post("/orders", createOrderMiddlware, createOrder);
+router.patch("/orders/:orderId", ChangeOrderMiddleware, ChangeOrderStatus);
 router.delete("/orders/:oderId", deleteCancelOrder);
 
 export { router };
