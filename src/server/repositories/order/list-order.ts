@@ -5,7 +5,9 @@ import { IOrder } from "../../models/protocols";
 
 export class MongoListOrderRepository implements IListOrderRpository {
   async list(): Promise<IOrder[]> {
-    const order = await Order.find();
+    const order = await Order.find()
+      .sort({ createAt: 1 })
+      .populate("products.product");
 
     if (!order) {
       throw new Internal_Server_Error(
