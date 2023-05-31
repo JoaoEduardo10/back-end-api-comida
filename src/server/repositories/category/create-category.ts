@@ -16,7 +16,7 @@ export class MongoCreateCategoryRepository
 
     if (!category)
       throw new Internal_Server_Error(
-        "Error ao criar a categorya no bamco de dados"
+        "Error ao criar a categoria no banco de dados"
       );
 
     const { _id, icon: newIcon, name: newName } = category;
