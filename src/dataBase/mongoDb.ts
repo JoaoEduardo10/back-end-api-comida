@@ -8,7 +8,7 @@ const MongoDb = {
 
     mongoose.set("strictQuery", true);
 
-    await mongoose.connect(url, { auth: { password, username } }, (error) => {
+    mongoose.connect(url, { auth: { password, username } }, (error) => {
       if (error) return console.error(error.message);
 
       console.log(`connectado ao banco de dados`);

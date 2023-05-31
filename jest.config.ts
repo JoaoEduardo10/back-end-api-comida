@@ -26,6 +26,7 @@ export default {
     "src/server/repositories/**/*.ts",
     "src/server/useCases/**/*.ts",
   ],
+  preset: "ts-jest",
 
   // The directory where Jest should output its coverage files
   coverageDirectory: "coverage",
