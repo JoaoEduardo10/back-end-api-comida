@@ -1,7 +1,7 @@
 import { Category } from "../../../src/server/models/mongo-models/Category";
 import { MongoCreateCategoryRepository } from "../../../src/server/repositories/category/create-category";
 
-describe("create-category", () => {
+describe("MongoCreateCategoryRepository", () => {
   it("should add a category to the database", async () => {
     const repository = new MongoCreateCategoryRepository();
 
