@@ -25,6 +25,8 @@ export default {
     "src/server/middlewares/**/*.ts",
     "src/server/repositories/**/*.ts",
     "src/server/useCases/**/*.ts",
+    "src/server/router.ts",
+    "src/server/middlewares/*.ts",
   ],
   preset: "ts-jest",
 
@@ -32,7 +34,7 @@ export default {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ["/node_modules/", "/protocols.ts"],
+  // coveragePathIgnorePatterns: ["/node_modules/", "/protocols.ts"],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
