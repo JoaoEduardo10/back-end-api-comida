@@ -11,7 +11,7 @@ class MockCategoryRepository implements ICreateCategoryRepository {
   }
 }
 
-const mockReq: IHttpRequest<Omit<ICategory, "id">> = {
+export const mockReq: IHttpRequest<Omit<ICategory, "id">> = {
   body: {
     icon: "test icon",
     name: "test name",
