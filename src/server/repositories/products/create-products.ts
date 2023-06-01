@@ -11,7 +11,7 @@ export class MongoCreateProductsRepository
 
     if (!product) {
       throw new Internal_Server_Error(
-        "Errro no bamnco de dados ao adicionar um produto"
+        "Erro no banco de dados ao adicionar um produto"
       );
     }
 
