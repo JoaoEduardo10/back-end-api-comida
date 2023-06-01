@@ -8,13 +8,18 @@ export const createCategoryMiddleware: RequestHandler<
   Omit<ICategory, "id">
 > = async (req, _res, next) => {
   const allFildsOfCategory: (keyof ICategory)[] = ["icon", "name"];
+  const { icon, name } = req.body;
 
-  for (const filds of allFildsOfCategory) {
-    if (!req?.body?.[filds as keyof Omit<ICategory, "id">]?.length) {
-      throw new Bad_Request(
-        `Os campos de icon e name são obrigatorios. Adicione o ${filds}`
-      );
-    }
+  if (!icon) {
+    throw new Bad_Request(
+      "Os campos de icon e name são obrigatorios. Adicione o icon"
+    );
+  }
+
+  if (!name) {
+    throw new Bad_Request(
+      "Os campos de icon e name são obrigatorios. Adicione o name"
+    );
   }
 
   const validateAllFilds = Object.keys(req.body).some(
