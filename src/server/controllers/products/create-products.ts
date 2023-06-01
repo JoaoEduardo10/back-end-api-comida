@@ -11,7 +11,7 @@ export class CreateProductsController implements IControllers {
   async handle(
     req: IHttpRequest<Omit<IProducts, "id">>
   ): Promise<IHttpResponse<IProducts>> {
-    const imagePath = req.file?.filename;
+    const imagePath = req.file.filename! as string;
 
     const { category, description, ingredients, name, price } = req.body!;
 
@@ -19,9 +19,7 @@ export class CreateProductsController implements IControllers {
       category,
       description,
       imagePath,
-      ingredients: ingredients
-        ? JSON.parse(ingredients as unknown as string)
-        : [],
+      ingredients: ingredients,
       name,
       price: Number(price),
     });
