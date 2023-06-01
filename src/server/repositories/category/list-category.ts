@@ -7,8 +7,7 @@ export class MongoListCategoryRepository implements IListCategoryRepository {
   async list(): Promise<ICategory[]> {
     const categories = await Category.find();
 
-    if (!categories)
-      throw new Internal_Server_Error("Erro ao carrega o servidor");
+    if (!categories) throw new Internal_Server_Error("Erro no banco de dados!");
 
     return categories.map(({ _id, name, icon }) => ({
       id: _id.toHexString(),
