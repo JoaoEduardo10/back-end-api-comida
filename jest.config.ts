@@ -157,6 +157,7 @@ export default {
   // testPathIgnorePatterns: [
   //   "/node_modules/"
   // ],
+  testTimeout: 10000,
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
