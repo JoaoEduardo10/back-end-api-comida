@@ -24,6 +24,7 @@ import { createProductsMiddleware } from "./middlewares/products/create-products
 import { ChangeOrderMiddleware } from "./middlewares/order/change-order";
 import { createOrderMiddlware } from "./middlewares/order/create-order";
 import { deleteOrderMiddlware } from "./middlewares/order/delete-order";
+import { listCategoryByProductsMiddleware } from "./middlewares/categories/list-category-by-products";
 
 const router = Router();
 
@@ -48,7 +49,11 @@ router.post(
   createProductsMiddleware,
   createProducts
 );
-router.get("/categories/:categoryId/products", getProductsByCategories);
+router.get(
+  "/categories/:categoryId/products",
+  listCategoryByProductsMiddleware,
+  getProductsByCategories
+);
 
 router.get("/orders", listOrder);
 router.post("/orders", createOrderMiddlware, createOrder);
